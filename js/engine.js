@@ -2,15 +2,17 @@ $(function() {
 
     /*
      * SortingProphet Simple Game
+     * by anggamaulana 2013
+     * follow github.com/anggamaulana
      * Settings
      */
     var BATASWAKTU = 60; //DETIK
     var BARIS = 4;
-    var PANJANGKOTAK = 150;
-    var LEBARKOTAK = 80;
-    var background = ["aajj.jpg", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8",
-        "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8",
-        "#d8d8d8", "#d8d8d8"];
+    var PANJANGKOTAK = 170;
+    var LEBARKOTAK = 100;
+    var backgroundKotak = ["idks", "kdks", "dkdo", "ksdl", "sasr", "nfdl", "alsc", "aodp", "aods", "kkal",
+        "wowk", "maep", "kajs", "nakd", "skwo", "ijsk", "lask", "nska", "lasd", "jsla", "ikto", "oarr", "mamm",
+        "isks", "sasp"];
 
 
 
@@ -96,6 +98,7 @@ $(function() {
                 obj.css("height", LEBARKOTAK + "px");
                 obj.css("background", "#000");
                 obj.css("position", "fixed");
+                obj.css("color","#fff");
 
                 posisikotak[j - 1] = [offsetTop + (jarakVertikal + squareHeight) * k, offsetLeft + (jarakHorizontal + squareWidth) * i];
                 mapping[j - 1] = j - 1;
@@ -124,10 +127,10 @@ $(function() {
                 obj.addClass("obj");
                 obj.css("width", PANJANGKOTAK + "px");
                 obj.css("height", LEBARKOTAK + "px");
-                obj.css("background", "#d8d8d8");
+                obj.css("background", "url(image/"+backgroundKotak[j-1]+".jpg)");
                 obj.css("position", "fixed");
-
-                obj.text(j);
+                obj.css("border","1px solid #000");
+                //obj.text(j);
                 obj.data("id", j);
 
 
@@ -261,5 +264,7 @@ $(function() {
     }
 
     intro();
+    $("#play").disableSelection();
+    
 
 });
