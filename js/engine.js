@@ -6,7 +6,7 @@ $(function() {
      * follow github.com/anggamaulana
      * Settings
      */
-    var BATASWAKTU = 60; //DETIK
+    var BATASWAKTU = 90; //DETIK
     var BARIS = 4;
     var PANJANGKOTAK = 170;
     var LEBARKOTAK = 100;
@@ -172,7 +172,11 @@ $(function() {
 
 
         //Make it droppable and draggable
-        $(".obj").draggable({cursor: 'pointer'});
+        $(".obj").draggable({
+            cursor: 'pointer',
+            stack:".obj"
+          
+        });
 
         $(".square").droppable({
             tolerance: 'intersect',
