@@ -6,8 +6,8 @@ $(function() {
      */
     var BATASWAKTU = 60; //DETIK
     var BARIS = 4;
-    var PANJANGKOTAK=150;
-    var LEBARKOTAK=80;
+    var PANJANGKOTAK = 150;
+    var LEBARKOTAK = 80;
     var background = ["aajj.jpg", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8",
         "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8", "#d8d8d8",
         "#d8d8d8", "#d8d8d8"];
@@ -21,51 +21,49 @@ $(function() {
     function intro() {
         var start = $('<h3><a>Start</a></h3>');
         start.click(function() {
-            $(this).remove();
-            $("#play").append($('<div id="area"></div>'));
-            $("#play").append($('<div id="timer">Timer <span id="waktu"></span></div>'));
-            playGame();
+            play(this);
 
         });
         $("#play").append(start);
     }
 
-    
+
     /*
      * Halaman Gagal Game
      */
     function fail() {
         var start = $('<h3><a>Start</a></h3>');
         start.click(function() {
-            $(this).remove();
-            $("#pesan").remove();
-            $("#play").append($('<div id="area"></div>'));
-            $("#play").append($('<div id="timer">Timer <span id="waktu"></span></div>'));
-            playGame();
+            play(this);
 
         });
         $("#play").append("<p id=\"pesan\"><b>Anda Gagal coba Lagi </b> </p>");
         $("#play").append(start);
     }
-    
+
     /*
      * Halaman Berhasil Game
      */
     function finish(Time) {
         var start = $('<h3><a>Start</a></h3>');
         start.click(function() {
-            $(this).remove();
-            $("#pesan").remove();
-            $("#play").append($('<div id="area"></div>'));
-            $("#play").append($('<div id="timer">Timer <span id="waktu"></span></div>'));
-            playGame();
+            play(this);
 
         });
         $("#play").append("<p id=\"pesan\"><b>Selamat Anda Sukses Menyeleseikan dalam " + Time + " Detik</b> </p>");
         $("#play").append(start);
     }
-    
-    
+
+    function play(obj) {
+        $(obj).remove();
+        $("#pesan").remove();
+        $("#play").append($('<div id="area"></div>'));
+        $("#play").append($('<div id="timer">Timer <span id="waktu"></span></div>'));
+        $("#timer").append($('<div class="meter"><span id="meter2" style="width:0%"></span></div>'));
+
+        playGame();
+    }
+
     /*
      * Mulai Permainan
      */
@@ -94,11 +92,11 @@ $(function() {
             for (var i = 0; i < max; i++) {
                 var obj = $("<div></div>");
                 obj.addClass("square");
-                obj.css("width", PANJANGKOTAK+"px");
-                obj.css("height", LEBARKOTAK+"px");
+                obj.css("width", PANJANGKOTAK + "px");
+                obj.css("height", LEBARKOTAK + "px");
                 obj.css("background", "#000");
                 obj.css("position", "fixed");
-               
+
                 posisikotak[j - 1] = [offsetTop + (jarakVertikal + squareHeight) * k, offsetLeft + (jarakHorizontal + squareWidth) * i];
                 mapping[j - 1] = j - 1;
                 obj.css("top", posisikotak[j - 1][0] + "px");
@@ -124,11 +122,11 @@ $(function() {
 
                 var obj = $("<div></div>");
                 obj.addClass("obj");
-                obj.css("width", PANJANGKOTAK+"px");
-                obj.css("height", LEBARKOTAK+"px");
+                obj.css("width", PANJANGKOTAK + "px");
+                obj.css("height", LEBARKOTAK + "px");
                 obj.css("background", "#d8d8d8");
                 obj.css("position", "fixed");
-               
+
                 obj.text(j);
                 obj.data("id", j);
 
@@ -232,7 +230,7 @@ $(function() {
                 if (kotak[i].data("id") == kotak[i].data("idPosisi")) {
                     match++;
                 }
-            }           
+            }
 
             if (match == 25)
                 return true;
@@ -244,11 +242,14 @@ $(function() {
         function timer() {
             if (Mulai <= BATASWAKTU) {
                 $("#waktu").text(Mulai);
+                var progress = (Mulai / BATASWAKTU) * 100;
+                $("#meter2").css("width", progress + "%");
                 Mulai++;
             } else {
                 clearInterval(Waktu);
                 $("#area").remove();
                 $("#timer").remove();
+                $(".meter").remove();
                 fail();
             }
         }
@@ -258,7 +259,6 @@ $(function() {
 
         var Waktu = setInterval(timer, '1000');
     }
-
 
     intro();
 
