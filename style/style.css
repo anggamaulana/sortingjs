@@ -2,13 +2,12 @@ body {
         font: bold 12px arial;
 }
 
-#area,#timer{
-    width:800px;
-    height:400px;
+#area{
+    
     user-select:none;
+    height:450px;
     
 }
-
 
 
 .border{

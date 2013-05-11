@@ -60,8 +60,8 @@ $(function() {
         $(obj).remove();
         $("#pesan").remove();
         $("#play").append($('<div id="area"></div>'));
-        $("#play").append($('<div id="timer">Timer <span id="waktu"></span></div>'));
-        $("#timer").append($('<div class="meter"><span id="meter2" style="width:0%"></span></div>'));
+        
+        $("#play").append($('<div class="meter"><span id="meter2" style="width:0%"></span></div>'));
 
         playGame();
     }
